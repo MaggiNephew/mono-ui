@@ -1,0 +1,784 @@
+{
+  "$comment": "mono-ui design tokens. The single source of truth: edit here, run `python3 gen/build.py`, every target regenerates. Colour values may be hex, a reference to another token (\"gray.900\", \"color.fg\"), alpha(ref, 0.22) or mix(refA, refB, 0.5). Toolkits that can't do transparency get a solid colour blended over the variant's background automatically.",
+  "name": "mono",
+  "version": "1.0.0",
+  "gray": {
+    "0": "#000000",
+    "50": "#0a0a0a",
+    "75": "#101010",
+    "100": "#131313",
+    "150": "#1a1a1a",
+    "200": "#1f1f1f",
+    "250": "#2a2a2a",
+    "300": "#333333",
+    "350": "#3a3a3a",
+    "400": "#555555",
+    "500": "#777777",
+    "550": "#787878",
+    "600": "#888888",
+    "650": "#919191",
+    "700": "#999999",
+    "750": "#b4b4b4",
+    "800": "#c6c6c6",
+    "850": "#d5d5d5",
+    "900": "#e2e2e2",
+    "1000": "#ffffff"
+  },
+  "fonts": {
+    "Fraunces": {
+      "files": [
+        "Fraunces-Light.ttf",
+        "Fraunces-LightItalic.ttf",
+        "Fraunces-Regular.ttf"
+      ],
+      "license": "OFL-1.1"
+    },
+    "Space Grotesk": {
+      "files": [
+        "SpaceGrotesk-Regular.ttf",
+        "SpaceGrotesk-Medium.ttf"
+      ],
+      "license": "OFL-1.1"
+    },
+    "Space Mono": {
+      "files": [
+        "SpaceMono-Regular.ttf",
+        "SpaceMono-Bold.ttf"
+      ],
+      "license": "OFL-1.1"
+    },
+    "3270 Nerd Font": {
+      "files": [
+        "3270NerdFont-Regular.ttf"
+      ],
+      "license": "OFL-1.1 + MIT (Nerd Fonts)"
+    },
+    "3270 Nerd Font Mono": {
+      "files": [
+        "3270NerdFontMono-Regular.ttf"
+      ],
+      "license": "OFL-1.1 + MIT (Nerd Fonts)"
+    }
+  },
+  "motion": {
+    "ease": [
+      0.22,
+      1,
+      0.36,
+      1
+    ],
+    "fast": 150,
+    "base": 300,
+    "slow": 600
+  },
+  "space": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 24,
+    "6": 32,
+    "7": 48,
+    "8": 64,
+    "9": 88,
+    "10": 112
+  },
+  "variants": {
+    "square": {
+      "description": "The website look: square corners, hairline rules, serif display type, uppercase tracked labels. From the Black Hole Lab / What a Website Sees pages.",
+      "mode": "dark",
+      "color": {
+        "bg": "gray.50",
+        "bgAlt": "gray.0",
+        "surface": "gray.75",
+        "surfaceAlt": "mix(gray.900, gray.50, 0.05)",
+        "fgStrong": "gray.1000",
+        "fg": "gray.900",
+        "fgDim": "gray.750",
+        "fgMuted": "gray.650",
+        "fgFaint": "gray.550",
+        "lineSoft": "alpha(gray.900, 0.10)",
+        "line": "alpha(gray.900, 0.22)",
+        "lineStrong": "alpha(gray.900, 0.42)",
+        "focus": "gray.900",
+        "tint": "alpha(gray.900, 0.05)",
+        "accent": "gray.900",
+        "accentHover": "gray.750",
+        "onAccent": "gray.50",
+        "selection": "alpha(gray.900, 0.18)",
+        "onSelection": "gray.1000",
+        "disabled": "gray.400",
+        "shadow": "alpha(gray.0, 0.0)"
+      },
+      "font": {
+        "display": {
+          "family": "Fraunces",
+          "weight": 300,
+          "fallback": "ui-serif, Georgia, serif"
+        },
+        "sans": {
+          "family": "Space Grotesk",
+          "weight": 400,
+          "fallback": "system-ui, sans-serif"
+        },
+        "strong": {
+          "family": "Space Grotesk",
+          "weight": 500,
+          "fallback": "system-ui, sans-serif"
+        },
+        "mono": {
+          "family": "Space Mono",
+          "weight": 400,
+          "fallback": "\"DejaVu Sans Mono\", ui-monospace, monospace"
+        }
+      },
+      "size": {
+        "label": 11,
+        "small": 12,
+        "ui": 14,
+        "body": 16,
+        "h3": 20,
+        "h2": 48,
+        "h1": 96,
+        "stat": 34
+      },
+      "label": {
+        "uppercase": true,
+        "tracking": 0.22,
+        "weight": 500
+      },
+      "radius": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "pill": 0
+      },
+      "border": {
+        "width": 1,
+        "focus": 1
+      },
+      "control": {
+        "height": 40,
+        "heightSmall": 32,
+        "padX": 18
+      },
+      "lineHeight": 1.55
+    },
+    "round": {
+      "description": "The program look: your rice. 3270 Nerd Font, 8px corners, solid grey outlines, white for emphasis. From the Quickshell bar, Hyprland, qt6ct and MonoBW.",
+      "mode": "dark",
+      "color": {
+        "bg": "gray.100",
+        "bgAlt": "gray.50",
+        "surface": "gray.200",
+        "surfaceAlt": "gray.250",
+        "fgStrong": "gray.1000",
+        "fg": "gray.900",
+        "fgDim": "gray.800",
+        "fgMuted": "gray.700",
+        "fgFaint": "gray.500",
+        "lineSoft": "gray.250",
+        "line": "gray.300",
+        "lineStrong": "gray.650",
+        "focus": "gray.700",
+        "tint": "alpha(gray.1000, 0.06)",
+        "accent": "gray.1000",
+        "accentHover": "gray.800",
+        "onAccent": "#1b1b1b",
+        "selection": "gray.350",
+        "onSelection": "gray.1000",
+        "disabled": "gray.500",
+        "shadow": "alpha(gray.0, 0.4)"
+      },
+      "font": {
+        "display": {
+          "family": "3270 Nerd Font",
+          "weight": 400,
+          "fallback": "ui-monospace, monospace"
+        },
+        "sans": {
+          "family": "3270 Nerd Font",
+          "weight": 400,
+          "fallback": "ui-monospace, monospace"
+        },
+        "strong": {
+          "family": "3270 Nerd Font",
+          "weight": 700,
+          "fallback": "ui-monospace, monospace"
+        },
+        "mono": {
+          "family": "3270 Nerd Font Mono",
+          "weight": 400,
+          "fallback": "ui-monospace, monospace"
+        }
+      },
+      "size": {
+        "label": 11,
+        "small": 12,
+        "ui": 14,
+        "body": 15,
+        "h3": 18,
+        "h2": 30,
+        "h1": 56,
+        "stat": 30
+      },
+      "label": {
+        "uppercase": false,
+        "tracking": 0.04,
+        "weight": 700
+      },
+      "radius": {
+        "sm": 6,
+        "md": 8,
+        "lg": 12,
+        "pill": 999
+      },
+      "border": {
+        "width": 1,
+        "focus": 2
+      },
+      "control": {
+        "height": 30,
+        "heightSmall": 22,
+        "padX": 12
+      },
+      "lineHeight": 1.45
+    },
+    "blend": {
+      "description": "A mix of the two: round's layered greys and soft corners, square's type and uppercase labels, 3270 for code.",
+      "mode": "dark",
+      "color": {
+        "bg": "gray.100",
+        "bgAlt": "gray.50",
+        "surface": "gray.200",
+        "surfaceAlt": "gray.250",
+        "fgStrong": "gray.1000",
+        "fg": "gray.900",
+        "fgDim": "gray.800",
+        "fgMuted": "gray.650",
+        "fgFaint": "gray.500",
+        "lineSoft": "alpha(gray.900, 0.08)",
+        "line": "alpha(gray.900, 0.16)",
+        "lineStrong": "alpha(gray.900, 0.36)",
+        "focus": "gray.900",
+        "tint": "alpha(gray.1000, 0.05)",
+        "accent": "gray.1000",
+        "accentHover": "gray.800",
+        "onAccent": "gray.100",
+        "selection": "alpha(gray.900, 0.18)",
+        "onSelection": "gray.1000",
+        "disabled": "gray.400",
+        "shadow": "alpha(gray.0, 0.35)"
+      },
+      "font": {
+        "display": {
+          "family": "Fraunces",
+          "weight": 300,
+          "fallback": "ui-serif, Georgia, serif"
+        },
+        "sans": {
+          "family": "Space Grotesk",
+          "weight": 400,
+          "fallback": "system-ui, sans-serif"
+        },
+        "strong": {
+          "family": "Space Grotesk",
+          "weight": 500,
+          "fallback": "system-ui, sans-serif"
+        },
+        "mono": {
+          "family": "3270 Nerd Font Mono",
+          "weight": 400,
+          "fallback": "ui-monospace, monospace"
+        }
+      },
+      "size": {
+        "label": 11,
+        "small": 12,
+        "ui": 14,
+        "body": 15,
+        "h3": 19,
+        "h2": 38,
+        "h1": 72,
+        "stat": 32
+      },
+      "label": {
+        "uppercase": true,
+        "tracking": 0.12,
+        "weight": 500
+      },
+      "radius": {
+        "sm": 4,
+        "md": 6,
+        "lg": 10,
+        "pill": 999
+      },
+      "border": {
+        "width": 1,
+        "focus": 1
+      },
+      "control": {
+        "height": 34,
+        "heightSmall": 26,
+        "padX": 14
+      },
+      "lineHeight": 1.5,
+      "editor": {
+        "fg": "gray.850",
+        "panel": "gray.50",
+        "cursorLine": "gray.150",
+        "search": "gray.400",
+        "match": "gray.300"
+      },
+      "terminal": {
+        "background": "gray.100"
+      }
+    },
+    "paper": {
+      "description": "The square look turned light: black ink on white paper, same hairlines, serif headings and tracked labels.",
+      "mode": "light",
+      "color": {
+        "bg": "#f2f2f2",
+        "bgAlt": "#ffffff",
+        "surface": "#e9e9e9",
+        "surfaceAlt": "mix(#111111, #f2f2f2, 0.06)",
+        "fgStrong": "#000000",
+        "fg": "#111111",
+        "fgDim": "#333333",
+        "fgMuted": "#5c5c5c",
+        "fgFaint": "#858585",
+        "lineSoft": "alpha(#111111, 0.10)",
+        "line": "alpha(#111111, 0.24)",
+        "lineStrong": "alpha(#111111, 0.48)",
+        "focus": "#111111",
+        "tint": "alpha(#111111, 0.05)",
+        "accent": "#111111",
+        "accentHover": "#3a3a3a",
+        "onAccent": "#f2f2f2",
+        "selection": "alpha(#111111, 0.14)",
+        "onSelection": "#000000",
+        "disabled": "#a3a3a3",
+        "shadow": "alpha(gray.0, 0.0)"
+      },
+      "font": {
+        "display": {
+          "family": "Fraunces",
+          "weight": 300,
+          "fallback": "ui-serif, Georgia, serif"
+        },
+        "sans": {
+          "family": "Space Grotesk",
+          "weight": 400,
+          "fallback": "system-ui, sans-serif"
+        },
+        "strong": {
+          "family": "Space Grotesk",
+          "weight": 500,
+          "fallback": "system-ui, sans-serif"
+        },
+        "mono": {
+          "family": "Space Mono",
+          "weight": 400,
+          "fallback": "\"DejaVu Sans Mono\", ui-monospace, monospace"
+        }
+      },
+      "size": {
+        "label": 11,
+        "small": 12,
+        "ui": 14,
+        "body": 16,
+        "h3": 20,
+        "h2": 48,
+        "h1": 96,
+        "stat": 34
+      },
+      "label": {
+        "uppercase": true,
+        "tracking": 0.22,
+        "weight": 500
+      },
+      "radius": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "pill": 0
+      },
+      "border": {
+        "width": 1,
+        "focus": 1
+      },
+      "control": {
+        "height": 40,
+        "heightSmall": 32,
+        "padX": 18
+      },
+      "lineHeight": 1.55,
+      "terminal": {
+        "background": "#f2f2f2",
+        "foreground": "#1f1f1f",
+        "cursor": "#000000",
+        "cursorText": "#f2f2f2",
+        "selectionBg": "#bdbdbd",
+        "selectionFg": "#000000",
+        "ansi": [
+          "#f2f2f2",
+          "#7a7a7a",
+          "#6a6a6a",
+          "#5a5a5a",
+          "#4a4a4a",
+          "#3a3a3a",
+          "#2a2a2a",
+          "#1f1f1f",
+          "#b0b0b0",
+          "#8a8a8a",
+          "#767676",
+          "#626262",
+          "#4e4e4e",
+          "#3a3a3a",
+          "#262626",
+          "#000000"
+        ],
+        "tabActiveBg": "#111111",
+        "tabActiveFg": "#f2f2f2",
+        "tabInactiveBg": "#e3e3e3",
+        "tabInactiveFg": "#6b6b6b"
+      },
+      "editor": {
+        "fg": "#1f1f1f",
+        "panel": "#ffffff",
+        "cursorLine": "#e9e9e9",
+        "search": "#c4c4c4",
+        "match": "#d6d6d6"
+      },
+      "syntax": {
+        "text": {
+          "color": "#1f1f1f"
+        },
+        "comment": {
+          "color": "#8a8a8a",
+          "italic": true
+        },
+        "keyword": {
+          "color": "#000000",
+          "bold": true
+        },
+        "control": {
+          "color": "#000000",
+          "bold": true
+        },
+        "operator": {
+          "color": "#5a5a5a"
+        },
+        "punctuation": {
+          "color": "#666666"
+        },
+        "string": {
+          "color": "#444444"
+        },
+        "escape": {
+          "color": "#000000",
+          "bold": true
+        },
+        "regexp": {
+          "color": "#2e2e2e"
+        },
+        "number": {
+          "color": "#000000"
+        },
+        "constant": {
+          "color": "#000000"
+        },
+        "boolean": {
+          "color": "#000000",
+          "italic": true
+        },
+        "function": {
+          "color": "#111111"
+        },
+        "method": {
+          "color": "#111111"
+        },
+        "builtin": {
+          "color": "#111111",
+          "italic": true
+        },
+        "type": {
+          "color": "#2e2e2e",
+          "italic": true
+        },
+        "namespace": {
+          "color": "#2e2e2e"
+        },
+        "variable": {
+          "color": "#1f1f1f"
+        },
+        "parameter": {
+          "color": "#2e2e2e",
+          "italic": true
+        },
+        "property": {
+          "color": "#2e2e2e"
+        },
+        "macro": {
+          "color": "#000000",
+          "italic": true
+        },
+        "tag": {
+          "color": "#000000"
+        },
+        "attribute": {
+          "color": "#5a5a5a",
+          "italic": true
+        },
+        "heading": {
+          "color": "#000000",
+          "bold": true
+        },
+        "emphasis": {
+          "color": "#111111",
+          "italic": true
+        },
+        "strong": {
+          "color": "#000000",
+          "bold": true
+        },
+        "link": {
+          "color": "#111111",
+          "underline": true
+        },
+        "code": {
+          "color": "#2e2e2e"
+        },
+        "added": {
+          "color": "#1f1f1f"
+        },
+        "removed": {
+          "color": "#8a8a8a",
+          "strikethrough": true
+        },
+        "changed": {
+          "color": "#5a5a5a"
+        },
+        "error": {
+          "color": "#000000",
+          "underline": true
+        },
+        "warning": {
+          "color": "#2e2e2e",
+          "underline": true
+        },
+        "info": {
+          "color": "#5a5a5a"
+        },
+        "hint": {
+          "color": "#8a8a8a"
+        }
+      }
+    }
+  },
+  "terminal": {
+    "$comment": "Your kitty/foot colours. kitty's background is the slightly blue #0d0d12; foot uses backgroundAlt.",
+    "background": "#0d0d12",
+    "backgroundAlt": "gray.50",
+    "foreground": "gray.850",
+    "cursor": "gray.1000",
+    "cursorText": "gray.50",
+    "selectionBg": "gray.600",
+    "selectionFg": "gray.50",
+    "ansi": [
+      "#1a1a1a",
+      "#555555",
+      "#6b6b6b",
+      "#818181",
+      "#979797",
+      "#adadad",
+      "#c3c3c3",
+      "#d9d9d9",
+      "#333333",
+      "#666666",
+      "#7c7c7c",
+      "#929292",
+      "#a8a8a8",
+      "#bebebe",
+      "#d4d4d4",
+      "#ffffff"
+    ],
+    "tabActiveBg": "gray.850",
+    "tabActiveFg": "#0d0d12",
+    "tabInactiveBg": "gray.150",
+    "tabInactiveFg": "gray.600"
+  },
+  "syntax": {
+    "$comment": "Code highlighting for editors. With no hues to lean on, weight and slant do the work: keywords are bright and bold, comments fade and lean, strings sit a step down from plain text. Same for both variants; only the background changes.",
+    "text": {
+      "color": "gray.850"
+    },
+    "comment": {
+      "color": "gray.500",
+      "italic": true
+    },
+    "keyword": {
+      "color": "gray.1000",
+      "bold": true
+    },
+    "control": {
+      "color": "gray.1000",
+      "bold": true
+    },
+    "operator": {
+      "color": "gray.700"
+    },
+    "punctuation": {
+      "color": "gray.650"
+    },
+    "string": {
+      "color": "gray.750"
+    },
+    "escape": {
+      "color": "gray.1000",
+      "bold": true
+    },
+    "regexp": {
+      "color": "gray.800"
+    },
+    "number": {
+      "color": "gray.1000"
+    },
+    "constant": {
+      "color": "gray.1000"
+    },
+    "boolean": {
+      "color": "gray.1000",
+      "italic": true
+    },
+    "function": {
+      "color": "gray.900"
+    },
+    "method": {
+      "color": "gray.900"
+    },
+    "builtin": {
+      "color": "gray.900",
+      "italic": true
+    },
+    "type": {
+      "color": "gray.800",
+      "italic": true
+    },
+    "namespace": {
+      "color": "gray.800"
+    },
+    "variable": {
+      "color": "gray.850"
+    },
+    "parameter": {
+      "color": "gray.800",
+      "italic": true
+    },
+    "property": {
+      "color": "gray.800"
+    },
+    "macro": {
+      "color": "gray.1000",
+      "italic": true
+    },
+    "tag": {
+      "color": "gray.1000"
+    },
+    "attribute": {
+      "color": "gray.700",
+      "italic": true
+    },
+    "heading": {
+      "color": "gray.1000",
+      "bold": true
+    },
+    "emphasis": {
+      "color": "gray.900",
+      "italic": true
+    },
+    "strong": {
+      "color": "gray.1000",
+      "bold": true
+    },
+    "link": {
+      "color": "gray.900",
+      "underline": true
+    },
+    "code": {
+      "color": "gray.800"
+    },
+    "added": {
+      "color": "gray.850"
+    },
+    "removed": {
+      "color": "gray.500",
+      "strikethrough": true
+    },
+    "changed": {
+      "color": "gray.700"
+    },
+    "error": {
+      "color": "gray.1000",
+      "underline": true
+    },
+    "warning": {
+      "color": "gray.800",
+      "underline": true
+    },
+    "info": {
+      "color": "gray.700"
+    },
+    "hint": {
+      "color": "gray.500"
+    }
+  },
+  "rice": {
+    "$comment": "Exactly what your desktop uses today, expressed as tokens, so the generated files are drop-in replacements.",
+    "matugen": {
+      "bg": "gray.100",
+      "bg_dim": "gray.100",
+      "surface": "gray.100",
+      "container": "gray.200",
+      "outline": "gray.650",
+      "fg": "gray.900",
+      "fg_muted": "gray.800",
+      "primary": "gray.1000",
+      "on_primary": "#1b1b1b"
+    },
+    "bar": {
+      "cBg": "gray.50",
+      "cBg1": "gray.100",
+      "cSurface": "gray.200",
+      "cSurface2": "gray.250",
+      "cOutline": "gray.300",
+      "cMuted": "gray.500",
+      "cFg2": "gray.700",
+      "cFg": "gray.900",
+      "cWhite": "gray.1000"
+    },
+    "hyprland": {
+      "activeBorder": "gray.700",
+      "inactiveBorder": "gray.300",
+      "shadow": "alpha(gray.0, 0.4)",
+      "borderSize": 2,
+      "rounding": 8,
+      "gapsIn": 4,
+      "gapsOut": 8
+    },
+    "starship": {
+      "text_dark": "#0d0d12",
+      "text_light": "#e6e6e6",
+      "seg1": "gray.1000",
+      "seg2": "#c4c4c4",
+      "seg3": "#8a8a8a",
+      "seg4": "#505055",
+      "seg5": "#36363b",
+      "seg6": "#242428",
+      "prompt_ok": "#9a9a9a",
+      "prompt_err": "gray.1000",
+      "prompt_vim": "gray.850"
+    }
+  }
+}

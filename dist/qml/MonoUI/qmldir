@@ -1,0 +1,5 @@
+module MonoUI
+singleton Mono 1.0 Mono.qml
+MonoButton 1.0 MonoButton.qml
+MonoLabel 1.0 MonoLabel.qml
+MonoCard 1.0 MonoCard.qml

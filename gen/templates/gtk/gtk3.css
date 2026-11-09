@@ -1,0 +1,170 @@
+/* mono-ui for GTK 3 ($variant). Works with any GTK 3 app: C, D (GtkD or the
+   monoui module), Python (PyGObject), Rust (gtk-rs), Vala.
+   Load it at APPLICATION priority, or drop it in ~/.config/gtk-3.0/gtk.css.
+   Style classes: label: .h1 .h2 .h3 .label .muted .faint .mono .stat
+                  button: .fill .line .ghost      box/frame: .card .stats .cell */
+
+@define-color mono_bg $bg;
+@define-color mono_bg_alt $bg_alt;
+@define-color mono_surface $surface;
+@define-color mono_surface_alt $surface_alt;
+@define-color mono_fg_strong $fg_strong;
+@define-color mono_fg $fg;
+@define-color mono_fg_dim $fg_dim;
+@define-color mono_fg_muted $fg_muted;
+@define-color mono_fg_faint $fg_faint;
+@define-color mono_line_soft $line_soft;
+@define-color mono_line $line;
+@define-color mono_line_strong $line_strong;
+@define-color mono_focus $focus;
+@define-color mono_accent $accent;
+@define-color mono_on_accent $on_accent;
+@define-color mono_selection $selection;
+@define-color mono_disabled $disabled;
+/* names GTK themes and apps commonly look up */
+@define-color theme_bg_color $bg;
+@define-color theme_fg_color $fg;
+@define-color theme_base_color $bg_alt;
+@define-color theme_text_color $fg;
+@define-color theme_selected_bg_color $selection;
+@define-color theme_selected_fg_color $on_selection;
+@define-color insensitive_fg_color $disabled;
+@define-color borders $line;
+
+* {
+  -gtk-icon-style: symbolic;
+  outline-color: $focus; outline-style: solid; outline-offset: 1px; outline-width: ${border_focus}px;
+  -gtk-outline-radius: ${r_md}px;
+}
+
+window, .background { background-color: $bg; color: $fg_dim; }
+window, dialog, popover, menu, label, entry, textview, button, treeview, list {
+  font-family: "$font_sans"; font-size: ${size_ui}px;
+}
+*:disabled { color: $disabled; }
+selection, *:selected { background-color: $selection; color: $on_selection; }
+
+/* ---------- type ---------- */
+label { color: $fg_dim; }
+label.h1 { font-family: "$font_display"; font-weight: $w_display; font-size: ${size_h1}px; color: $fg; }
+label.h2 { font-family: "$font_display"; font-weight: $w_display; font-size: ${size_h2}px; color: $fg; }
+label.h3 { font-family: "$font_strong"; font-weight: $w_strong; font-size: ${size_h3}px; color: $fg; }
+label.label { font-family: "$font_strong"; font-weight: $label_weight; font-size: ${size_label}px; letter-spacing: ${label_tracking_px}px; color: $fg_muted; }
+label.muted { color: $fg_muted; }
+label.faint { color: $fg_faint; }
+label.mono { font-family: "$font_mono"; font-size: ${size_small}px; color: $fg_dim; }
+label.stat { font-family: "$font_display"; font-weight: $w_display; font-size: ${size_stat}px; color: $fg; }
+link { color: $fg_strong; }
+
+/* ---------- containers ---------- */
+.card { background-color: $surface; border: 1px solid $line; border-radius: ${r_lg}px; padding: 14px 16px; }
+.stats { border: 1px solid $line; border-radius: ${r_md}px; }
+.cell { border-right: 1px solid $line; padding: 12px 14px 10px; }
+.cell:last-child { border-right: none; }
+separator { background-color: $line; min-width: 1px; min-height: 1px; }
+frame > border { border: 1px solid $line; border-radius: ${r_md}px; }
+frame > label { color: $fg_muted; }
+scrolledwindow { background: transparent; }
+
+/* ---------- buttons ---------- */
+button {
+  background-image: none; background-color: transparent; color: $fg; text-shadow: none; box-shadow: none;
+  border: 1px solid $fg; border-radius: ${r_md}px; min-height: ${control_inner}px; padding: 0 ${control_px}px;
+  font-family: "$font_strong"; font-weight: $label_weight; font-size: ${size_label}px; letter-spacing: ${btn_tracking_px}px;
+  transition: background-color ${fast}ms, border-color ${fast}ms;
+}
+button:hover { background-color: $tint; }
+button:active, button:checked { background-color: $accent; color: $on_accent; border-color: $accent; }
+button:disabled { color: $disabled; border-color: $line; background-color: transparent; }
+button.fill, button.suggested-action { background-color: $accent; color: $on_accent; border-color: $accent; }
+button.fill:hover, button.suggested-action:hover { background-color: $accent_hover; border-color: $accent_hover; }
+button.fill label, button.suggested-action label { color: $on_accent; }
+button.line { border-color: $line_strong; }
+button.line:hover { border-color: $fg; }
+button.ghost, button.flat { border-color: transparent; color: $fg_muted; }
+button.ghost:hover, button.flat:hover { color: $fg; background-color: $tint; }
+button.destructive-action { border-color: $fg; border-style: dashed; }
+button label { color: inherit; }
+
+/* ---------- inputs ---------- */
+entry, spinbutton:not(.vertical), textview text {
+  background-image: none; background-color: $bg_alt; color: $fg; box-shadow: none;
+  border: 1px solid $line; border-radius: ${r_md}px; min-height: ${control_inner}px; padding: 0 10px;
+  caret-color: $fg_strong;
+}
+textview { background-color: $bg_alt; }
+textview text { padding: 6px 8px; }
+entry:hover { border-color: $line_strong; }
+entry:focus, spinbutton:focus { border: ${border_focus}px solid $focus; }
+entry placeholder, entry .dim-label { color: $fg_faint; }
+spinbutton entry { border: none; border-radius: 0; background: transparent; min-height: 0; }
+spinbutton button { border: none; border-left: 1px solid $line; border-radius: 0; min-height: 0; padding: 0 8px; }
+combobox button.combo, dropdown button { background-color: $bg_alt; border-color: $line; color: $fg; }
+combobox button.combo:hover { border-color: $line_strong; }
+combobox arrow, menubutton arrow { -gtk-icon-source: none; background-image: url("$icons/chevron-down.svg"); background-repeat: no-repeat; background-position: center; background-size: 10px 10px; min-width: 12px; min-height: 12px; }
+
+/* ---------- check / radio / switch ---------- */
+check, radio {
+  background-image: none; background-color: $bg_alt; border: 1px solid $line_strong; min-width: 14px; min-height: 14px;
+  margin: 0 8px 0 0; color: $on_accent; -gtk-icon-source: none;
+}
+check { border-radius: ${r_check}px; }
+radio { border-radius: 100%; }
+check:hover, radio:hover { border-color: $fg; }
+check:checked { background-color: $accent; border-color: $accent; -gtk-icon-source: url("$icons/check.svg"); }
+check:indeterminate { background-color: $accent; border-color: $accent; -gtk-icon-source: url("$icons/dash.svg"); }
+radio:checked { border-color: $fg; -gtk-icon-source: url("$icons/radio.svg"); }
+switch { background-color: $bg_alt; border: 1px solid $line_strong; border-radius: ${r_pill}px; min-width: 36px; min-height: 18px; color: transparent; font-size: 0; }
+switch slider { background-image: none; box-shadow: none; background-color: $fg_muted; border: none; border-radius: ${r_pill}px; min-width: 14px; min-height: 14px; margin: 1px; }
+switch:checked { background-color: $accent; border-color: $accent; }
+switch:checked slider { background-image: none; background-color: $on_accent; }
+
+/* ---------- sliders & progress ---------- */
+scale trough { background-color: $line_strong; min-height: 2px; min-width: 2px; border-radius: 1px; border: none; }
+scale trough highlight { background-image: none; background-color: $fg; border: none; border-radius: 1px; }
+scale slider { background-color: $fg_strong; border: none; min-width: 14px; min-height: 14px; margin: -6px; border-radius: ${r_thumb}px; box-shadow: none; }
+progressbar trough { background-color: $line_soft; min-height: 4px; border: none; border-radius: ${r_bar}px; }
+progressbar progress { background-color: $fg; min-height: 4px; border: none; border-radius: ${r_bar}px; }
+levelbar block.filled { background-color: $fg; }
+levelbar block.empty { background-color: $line_soft; }
+
+/* ---------- notebook (tabs) ---------- */
+notebook { background-color: transparent; }
+notebook > header { background-color: transparent; border: none; box-shadow: none; }
+notebook > header.top { border-bottom: 1px solid $line; }
+notebook > header tab { background-color: transparent; border: 1px solid transparent; border-bottom: none; padding: 6px 14px;
+  border-radius: ${r_md}px ${r_md}px 0 0; color: $fg_muted; box-shadow: none; }
+notebook > header tab label { font-family: "$font_strong"; font-weight: $label_weight; font-size: ${size_label}px; color: inherit; }
+notebook > header tab:hover { color: $fg; }
+notebook > header tab:checked { color: $fg; border-color: $line; background-color: $bg; margin-bottom: -1px; }
+notebook > stack { background-color: $bg; }
+
+/* ---------- lists & trees ---------- */
+list, treeview.view, iconview { background-color: $bg_alt; color: $fg; }
+list { border: 1px solid $line; border-radius: ${r_md}px; }
+list row { padding: 6px 10px; border-radius: ${r_sm}px; }
+list row:hover { background-color: $tint; }
+list row:selected { background-color: $selection; color: $on_selection; }
+treeview.view header button { background-color: $bg_alt; color: $fg_muted; border: none; border-bottom: 1px solid $line;
+  border-radius: 0; min-height: 0; padding: 6px 8px; font-size: ${size_label}px; }
+treeview.view:selected { background-color: $selection; color: $on_selection; }
+
+/* ---------- menus, popovers, tooltips ---------- */
+menubar { background-color: $bg; border-bottom: 1px solid $line_soft; }
+menu, .menu, popover, popover.background { background-color: $surface; color: $fg; border: 1px solid $line_strong; border-radius: ${r_md}px; }
+menuitem { padding: 6px 12px; }
+menuitem:hover { background-color: $selection; color: $on_selection; }
+tooltip, tooltip.background { background-color: $surface_alt; color: $fg; border: 1px solid $line_strong; border-radius: ${r_sm}px; }
+tooltip label { font-family: "$font_mono"; font-size: ${size_small}px; color: $fg; }
+
+/* ---------- headerbar / statusbar ---------- */
+headerbar { background-image: none; background-color: $bg; border-bottom: 1px solid $line_soft; box-shadow: none; min-height: 40px; }
+headerbar .title { font-family: "$font_strong"; font-weight: $w_strong; color: $fg; }
+headerbar .subtitle { color: $fg_muted; }
+statusbar { background-color: $bg_alt; border-top: 1px solid $line_soft; color: $fg_muted; }
+statusbar label { font-family: "$font_mono"; font-size: ${size_small}px; color: $fg_muted; }
+
+/* ---------- scrollbars ---------- */
+scrollbar { background-color: transparent; border: none; }
+scrollbar slider { background-color: $line_strong; border: none; border-radius: ${r_scroll}px; min-width: 6px; min-height: 6px; }
+scrollbar slider:hover { background-color: $fg_muted; }

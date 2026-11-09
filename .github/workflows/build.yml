@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dist-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild dist
+        run: python3 gen/build.py
+      - name: Check dist matches the tokens
+        run: |
+          if [ -n "$(git status --porcelain dist)" ]; then
+            echo "dist/ is out of date. Run python3 gen/build.py and commit the result."
+            git status --short dist
+            git diff --stat dist
+            exit 1
+          fi
+      - name: Check generated files parse
+        run: |
+          python3 -c "import json,glob; [json.load(open(f)) for f in glob.glob('dist/**/*.json', recursive=True)]"
+          python3 -c "import tomllib,glob; [tomllib.load(open(f,'rb')) for f in glob.glob('dist/**/*.toml', recursive=True)]"
+          python3 -m py_compile $(find dist -name '*.py')

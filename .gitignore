@@ -1,0 +1,9 @@
+build/
+__pycache__/
+examples/cpp-imgui/imgui/
+examples/d-gtk/.dub/
+examples/d-gtk/mono-gtk-demo
+target/
+examples/*/Cargo.lock
+examples/swing/build/
+*.class

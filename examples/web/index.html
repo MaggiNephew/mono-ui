@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-mono="square">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>mono-ui · Web components</title>
+  <link rel="stylesheet" href="../../dist/web/mono.css">
+  <style>
+    .demo-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 56px 72px; }
+    .demo-copy { display: grid; gap: 22px; }
+    .demo-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); border: 1px solid var(--m-line); border-radius: var(--m-r-lg); overflow: hidden; }
+    .demo-swatches div { height: 72px; position: relative; border-right: 1px solid var(--m-line-soft); border-bottom: 1px solid var(--m-line-soft); }
+    .demo-swatches span { position: absolute; left: 8px; bottom: 6px; font-family: var(--m-font-mono); font-size: 10px; mix-blend-mode: difference; color: #fff; }
+    .demo-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 48px; }
+    @media (max-width: 1000px) { .demo-hero { grid-template-columns: minmax(0, 1fr); } .demo-hero figure { order: -1; } }
+  </style>
+</head>
+<body>
+  <header class="m-nav m-wrap">
+    <a class="m-brand" href="#top"><span class="m-mark">mu</span>mono-ui</a>
+    <nav class="m-links"><a href="#type">Type</a><a href="#controls">Controls</a><a href="#data">Data</a><a href="#feedback">Feedback</a></nav>
+    <div class="m-tabs" role="group" aria-label="Variant">
+      <button type="button" class="m-tab" data-variant="square" aria-pressed="true">Square</button>
+      <button type="button" class="m-tab" data-variant="round" aria-pressed="false">Round</button>
+      <button type="button" class="m-tab" data-variant="blend" aria-pressed="false">Blend</button>
+      <button type="button" class="m-tab" data-variant="paper" aria-pressed="false">Paper</button>
+    </div>
+  </header>
+
+  <main class="m-wrap" id="top">
+    <div class="demo-hero">
+      <div class="demo-copy">
+        <div class="m-row"><span class="m-dot is-live"></span><span class="m-label">Arch · Hyprland · Mono</span></div>
+        <h1 class="m-h1">One palette, every language.</h1>
+        <p class="m-display"><em>square for the web · round for programs · blend in between · paper in light</em></p>
+        <dl class="m-kv">
+          <div><dt>Variant</dt><dd id="v-name">Square</dd></div>
+          <div><dt>Display</dt><dd id="v-display">Fraunces</dd></div>
+          <div><dt>Corners</dt><dd id="v-radius">0 px</dd></div>
+          <div><dt>Targets</dt><dd>CSS · Tailwind · React · Qt · GTK · ImGui · egui · iced<small>plus Tk, Swing, Textual, QML, editors, terminals and constants for 8 languages</small></dd></div>
+        </dl>
+        <div class="m-stats">
+          <div><b>4</b><span>Variants</span></div>
+          <div><b>21</b><span>Colour roles</span></div>
+          <div><b>13</b><span>Toolkits</span></div>
+          <div><b>1</b><span>Source file</span></div>
+        </div>
+        <div class="m-row">
+          <a class="m-btn fill" href="#controls">See the controls</a>
+          <a class="m-btn line arrow" href="#data">Data views</a>
+        </div>
+      </div>
+      <figure class="m-figure">
+        <canvas id="fig" width="300" height="300" aria-label="Dithered sphere"></canvas>
+        <figcaption><span>fig. 1 · mono.js sphere</span><span>8×8 bayer dither</span></figcaption>
+      </figure>
+    </div>
+
+    <nav class="m-toc" aria-label="Sections">
+      <a href="#type"><span class="m-n">01</span>Type &amp; colour</a>
+      <a href="#controls"><span class="m-n">02</span>Controls</a>
+      <a href="#data"><span class="m-n">03</span>Data</a>
+      <a href="#feedback"><span class="m-n">04</span>Feedback</a>
+    </nav>
+
+    <section class="m-section" id="type">
+      <div class="m-sh">
+        <div><span class="m-n">01 · <span class="m-label">Type &amp; colour</span></span><h2 class="m-h2">The greys, and how they're used.</h2></div>
+        <p>Every value below is a variable from <code>tokens/mono.json</code>. Switch the variant in the top bar to see both.</p>
+      </div>
+      <div class="demo-swatches" id="swatches"></div>
+      <div class="demo-two" style="margin-top:48px">
+        <div class="m-stack">
+          <span class="m-label">Label · 11 px</span>
+          <h3 class="m-h3">Heading 3, the card title</h3>
+          <p class="m-lead">Lead text for introductions. It sits a little larger than body copy and uses the dimmed foreground.</p>
+          <p style="margin:0">Body text with <a href="#">a link</a>, some <code>inline code</code>, <kbd>Super</kbd>+<kbd>L</kbd>, <span class="m-muted">muted</span> and <span class="m-faint">faint</span> words.</p>
+          <p class="m-mono m-faint" style="margin:0">mono · 0123456789 · ⟶ ▸ ┃</p>
+        </div>
+        <dl class="m-legend">
+          <div><dt>--m-fg</dt><dd>Main text and the accent in Square.</dd></div>
+          <div><dt>--m-fg-dim</dt><dd>Body copy.</dd></div>
+          <div><dt>--m-fg-muted</dt><dd>Labels, secondary text.</dd></div>
+          <div><dt>--m-line</dt><dd>Borders. A hairline in Square, Blend and Paper, solid #333 in Round.</dd></div>
+          <div><dt>--m-accent</dt><dd>Filled buttons, active tabs, checked boxes.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="m-section" id="controls">
+      <div class="m-sh">
+        <div><span class="m-n">02 · <span class="m-label">Controls</span></span><h2 class="m-h2">Buttons and inputs.</h2></div>
+      </div>
+      <div class="m-stack">
+        <div class="m-row">
+          <button class="m-btn fill">Fill</button>
+          <button class="m-btn line">Line</button>
+          <button class="m-btn">Outline</button>
+          <button class="m-btn ghost">Ghost</button>
+          <button class="m-btn line arrow">Arrow</button>
+          <button class="m-btn fill is-busy">Busy</button>
+          <button class="m-btn line" disabled>Disabled</button>
+          <button class="m-btn line small">Small</button>
+          <button class="m-btn icon line" data-tip="Tooltip" aria-label="Settings">⚙</button>
+        </div>
+        <div class="m-row">
+          <div class="m-btn-group"><button class="m-btn line">Day</button><button class="m-btn line">Week</button><button class="m-btn line">Month</button></div>
+          <div class="m-tabs"><button class="m-tab" aria-pressed="true">All <span class="m-count">12</span></button><button class="m-tab">Unfiled <span class="m-count">3</span></button><button class="m-tab">Friends <span class="m-count">9</span></button></div>
+          <span class="m-chip">12:04 PST</span><span class="m-chip is-on">online</span>
+        </div>
+        <div class="m-grid" style="margin-top:16px">
+          <label class="m-field"><span class="m-label">Text</span><input class="m-input" placeholder="Type here…"><span class="m-hint">A hint under the field.</span></label>
+          <label class="m-field"><span class="m-label">Select</span><select class="m-select"><option>Square</option><option>Round</option><option>Blend</option><option>Paper</option></select></label>
+          <label class="m-field"><span class="m-label">Disabled</span><input class="m-input" value="Can't edit" disabled></label>
+        </div>
+        <label class="m-field"><span class="m-label">Textarea</span><textarea class="m-textarea">Multiple lines of text.</textarea></label>
+        <div class="m-row" style="gap:28px">
+          <label class="m-check"><input type="checkbox" checked> Checked</label>
+          <label class="m-check"><input type="checkbox"> Unchecked</label>
+          <label class="m-radio"><input type="radio" name="r" checked> Radio A</label>
+          <label class="m-radio"><input type="radio" name="r"> Radio B</label>
+          <label class="m-switch"><input type="checkbox" checked> Switch</label>
+          <label class="m-switch"><input type="checkbox"> Off</label>
+        </div>
+        <div class="m-grid">
+          <input class="m-range" type="range" value="60" aria-label="Slider">
+          <div class="m-progress" style="align-self:center"><span style="--value: 64%"></span></div>
+          <div class="m-progress is-busy" style="align-self:center"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="m-section" id="data">
+      <div class="m-sh">
+        <div><span class="m-n">03 · <span class="m-label">Data</span></span><h2 class="m-h2">Readouts, cards and tables.</h2></div>
+      </div>
+      <div class="m-notes">
+        <article><span class="m-icon-box">01</span><h3 class="m-h3">Notes strip</h3><p>Joined cards sharing borders, for three or four related points.</p></article>
+        <article><span class="m-icon-box">02</span><h3 class="m-h3">Same markup</h3><p>Square draws hairlines and sharp corners; Round draws your bar's outlines.</p></article>
+        <article><span class="m-icon-box">03</span><h3 class="m-h3">No framework</h3><p>One CSS file, one optional JS file, no build step.</p></article>
+      </div>
+      <div class="demo-two" style="margin-top:48px">
+        <dl class="m-readout">
+          <div class="is-hot"><dt>IP address</dt><dd>203.0.113.42<small>IPv4</small></dd></div>
+          <div><dt>Location</dt><dd>Seattle, Washington, US<small>From the IP. Often city-level.</small></dd></div>
+          <div><dt>GPU</dt><dd>NVIDIA GeForce RTX 3060</dd></div>
+          <div class="is-hot"><dt>Fingerprint</dt><dd>9154 c60e df61 6c38</dd></div>
+        </dl>
+        <div class="m-stack">
+          <div class="m-card"><span class="m-label">Card</span><h3 class="m-h3">Raised surface</h3><p>A card with the surface colour and the large radius.</p><div class="m-row"><button class="m-btn fill small">Open</button><button class="m-btn ghost small">Dismiss</button></div></div>
+          <div class="m-card dashed flat"><span class="m-label">Planned</span><p>A dashed, flat card for things that don't exist yet.</p></div>
+        </div>
+      </div>
+      <table class="m-table" style="margin-top:48px">
+        <thead><tr><th>Machine</th><th>Address</th><th>Role</th><th class="num">Threads</th></tr></thead>
+        <tbody>
+          <tr><td>Black Hole</td><td class="m-mono">10.10.10.10</td><td>Proxmox server</td><td class="num">24</td></tr>
+          <tr><td>Event Horizon</td><td class="m-mono">10.10.10.11</td><td>Backups + apt mirror</td><td class="num">4</td></tr>
+          <tr><td>Predator</td><td class="m-mono">10.10.10.20</td><td>Laptop · Hyprland</td><td class="num">16</td></tr>
+        </tbody>
+      </table>
+      <ul class="m-list" style="margin-top:32px">
+        <li><span>hyprland</span><span>0.52</span></li><li><span>quickshell</span><span>0.2</span></li><li><span>kitty</span><span>0.44</span></li>
+      </ul>
+      <details class="m-details" style="margin-top:24px"><summary>Disclosure</summary><p style="margin:0">Hidden content that opens in place.</p></details>
+    </section>
+
+    <section class="m-section" id="feedback">
+      <div class="m-sh">
+        <div><span class="m-n">04 · <span class="m-label">Feedback</span></span><h2 class="m-h2">Status, loading, dialogs.</h2></div>
+      </div>
+      <div class="m-stack">
+        <div class="m-status is-loading"><div><p>Saving to the log…</p><p>Prompt 2 of 4.</p></div></div>
+        <div class="m-status is-success"><div><p>Saved.</p><p>Recorded Nov 4, 2026, 12:40 AM.</p></div></div>
+        <div class="m-status is-error"><div><p>Not saved.</p><p>The server did not respond in time.</p></div></div>
+        <dl class="m-kv"><div><dt>Loading value</dt><dd><span class="m-redact"></span></dd></div></dl>
+        <div><button class="m-btn line" id="open-dialog">Open dialog</button></div>
+      </div>
+      <dialog class="m-dialog" id="dialog">
+        <div class="m-stack">
+          <span class="m-label">Dialog</span>
+          <h3 class="m-h3">Delete this device?</h3>
+          <p style="margin:0">Its 3 saves and 5 visit records go with it. This can't be undone.</p>
+          <form method="dialog" class="m-row"><button class="m-btn fill">Delete</button><button class="m-btn ghost">Cancel</button></form>
+        </div>
+      </dialog>
+    </section>
+  </main>
+
+  <footer class="m-footer m-wrap">
+    <div class="m-stack" style="gap:8px"><b class="m-h3" style="font-family:var(--m-font-display);font-weight:var(--m-w-display);font-size:30px">mono-ui</b><span class="m-mono m-faint">tokens → css · qt · imgui · gtk · textual · qml</span></div>
+    <div><span class="m-label">Variants</span><ul style="margin-top:12px"><li>Square</li><li>Round</li><li>Blend</li><li>Paper</li></ul></div>
+    <div><span class="m-label">Made for</span><ul style="margin-top:12px"><li>magginephew-rice</li><li>Black Hole Lab</li></ul></div>
+  </footer>
+
+  <script type="module">
+    import { setVariant, savedVariant, dither, sphere } from "../../dist/web/mono.js";
+    const roles = ["bg","bg-alt","surface","surface-alt","fg-strong","fg","fg-dim","fg-muted","fg-faint","line-soft","line","line-strong","focus","accent","on-accent","selection","disabled"];
+    function render(v) {
+      setVariant(v);
+      for (const b of document.querySelectorAll("[data-variant]")) b.setAttribute("aria-pressed", String(b.dataset.variant === v));
+      const cs = getComputedStyle(document.documentElement);
+      document.getElementById("v-name").textContent = v.charAt(0).toUpperCase() + v.slice(1);
+      document.getElementById("v-display").textContent = cs.getPropertyValue("--m-font-display").split(",")[0].replaceAll('"', "");
+      document.getElementById("v-radius").textContent = cs.getPropertyValue("--m-r-md").trim();
+      const sw = document.getElementById("swatches");
+      sw.replaceChildren(...roles.map((r) => {
+        const d = document.createElement("div"); d.style.background = `var(--m-${r})`;
+        const s = document.createElement("span"); s.textContent = `${r} ${cs.getPropertyValue("--m-" + r).trim()}`; d.append(s); return d;
+      }));
+      requestAnimationFrame(() => dither(document.getElementById("fig"), sphere));
+    }
+    for (const b of document.querySelectorAll("[data-variant]")) b.addEventListener("click", () => render(b.dataset.variant));
+    document.getElementById("open-dialog").addEventListener("click", () => document.getElementById("dialog").showModal());
+    render(new URLSearchParams(location.search).get("v") || savedVariant());
+  </script>
+</body>
+</html>

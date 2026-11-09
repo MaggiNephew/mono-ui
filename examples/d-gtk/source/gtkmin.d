@@ -1,0 +1,68 @@
+// The handful of GTK 3 C functions this demo uses. With GtkD you'd use its classes instead;
+// monoui.gtk works the same either way.
+module gtkmin;
+
+extern (C) nothrow @nogc:
+
+alias GtkWidget = void;
+alias GCallback = void function();
+enum GTK_WINDOW_TOPLEVEL = 0;
+enum GTK_ORIENTATION_HORIZONTAL = 0, GTK_ORIENTATION_VERTICAL = 1;
+enum GTK_ALIGN_FILL = 0, GTK_ALIGN_START = 1, GTK_ALIGN_END = 2, GTK_ALIGN_CENTER = 3;
+
+void gtk_init(int* argc, char*** argv);
+void gtk_main();
+void gtk_main_quit();
+GtkWidget* gtk_window_new(int type);
+void gtk_window_set_title(GtkWidget*, const(char)*);
+void gtk_window_set_default_size(GtkWidget*, int, int);
+GtkWidget* gtk_box_new(int orientation, int spacing);
+void gtk_box_pack_start(GtkWidget*, GtkWidget*, int expand, int fill, uint padding);
+void gtk_container_add(GtkWidget*, GtkWidget*);
+void gtk_container_set_border_width(GtkWidget*, uint);
+GtkWidget* gtk_label_new(const(char)*);
+void gtk_label_set_xalign(GtkWidget*, float);
+GtkWidget* gtk_button_new_with_label(const(char)*);
+GtkWidget* gtk_entry_new();
+void gtk_entry_set_text(GtkWidget*, const(char)*);
+void gtk_entry_set_placeholder_text(GtkWidget*, const(char)*);
+GtkWidget* gtk_check_button_new_with_label(const(char)*);
+GtkWidget* gtk_radio_button_new_with_label_from_widget(GtkWidget* group, const(char)*);
+void gtk_toggle_button_set_active(GtkWidget*, int);
+GtkWidget* gtk_switch_new();
+void gtk_switch_set_active(GtkWidget*, int);
+GtkWidget* gtk_scale_new_with_range(int orientation, double min, double max, double step);
+void gtk_scale_set_draw_value(GtkWidget*, int);
+void gtk_range_set_value(GtkWidget*, double);
+GtkWidget* gtk_progress_bar_new();
+void gtk_progress_bar_set_fraction(GtkWidget*, double);
+GtkWidget* gtk_notebook_new();
+int gtk_notebook_append_page(GtkWidget*, GtkWidget* child, GtkWidget* tabLabel);
+GtkWidget* gtk_combo_box_text_new();
+void gtk_combo_box_text_append_text(GtkWidget*, const(char)*);
+void gtk_combo_box_set_active(GtkWidget*, int);
+GtkWidget* gtk_spin_button_new_with_range(double min, double max, double step);
+void gtk_spin_button_set_value(GtkWidget*, double);
+GtkWidget* gtk_list_box_new();
+void gtk_list_box_insert(GtkWidget*, GtkWidget*, int position);
+void gtk_list_box_select_row(GtkWidget*, GtkWidget* row);
+GtkWidget* gtk_list_box_get_row_at_index(GtkWidget*, int);
+GtkWidget* gtk_separator_new(int orientation);
+GtkWidget* gtk_statusbar_new();
+uint gtk_statusbar_push(GtkWidget*, uint ctx, const(char)*);
+GtkWidget* gtk_text_view_new();
+void gtk_widget_set_size_request(GtkWidget*, int, int);
+void gtk_widget_set_halign(GtkWidget*, int);
+void gtk_widget_set_valign(GtkWidget*, int);
+void gtk_widget_set_hexpand(GtkWidget*, int);
+void gtk_widget_set_vexpand(GtkWidget*, int);
+void gtk_widget_set_margin_top(GtkWidget*, int);
+void gtk_widget_set_sensitive(GtkWidget*, int);
+void gtk_widget_show_all(GtkWidget*);
+void* gtk_widget_get_window(GtkWidget*);
+int gdk_window_get_width(void*);
+int gdk_window_get_height(void*);
+void* gdk_pixbuf_get_from_window(void* window, int x, int y, int w, int h);
+int gdk_pixbuf_save(void* pixbuf, const(char)* filename, const(char)* type, void** error, ...);
+ulong g_signal_connect_data(void* instance, const(char)* signal, GCallback handler, void* data, void* destroy, int flags);
+uint g_timeout_add(uint ms, int function(void*) fn, void* data);

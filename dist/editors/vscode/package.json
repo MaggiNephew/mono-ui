@@ -1,0 +1,48 @@
+{
+  "name": "mono-ui-theme",
+  "displayName": "Mono",
+  "description": "Black and white: Square, Round, Blend and Paper.",
+  "version": "1.0.0",
+  "publisher": "MaggiNephew",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaggiNephew/mono-ui"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "monochrome",
+    "black",
+    "white",
+    "grayscale"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Mono Square",
+        "uiTheme": "vs-dark",
+        "path": "./themes/mono-square-color-theme.json"
+      },
+      {
+        "label": "Mono Round",
+        "uiTheme": "vs-dark",
+        "path": "./themes/mono-round-color-theme.json"
+      },
+      {
+        "label": "Mono Blend",
+        "uiTheme": "vs-dark",
+        "path": "./themes/mono-blend-color-theme.json"
+      },
+      {
+        "label": "Mono Paper",
+        "uiTheme": "vs",
+        "path": "./themes/mono-paper-color-theme.json"
+      }
+    ]
+  }
+}
